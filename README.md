@@ -158,3 +158,11 @@ Este código utiliza una API externa para obtener información adicional sobre l
 3. La URL de la solicitud es `{EXTERNAL_API_URL}/todos?userId={user_id}`, lo que indica que está consultando el endpoint "todos" de la API externa, filtrando por el ID del usuario.
 4. Si encuentra que alguna tarea está marcada como completada (`external_data[0]['completed']`), genera una notificación por correo electrónico.
 5. Finalmente, retorna un objeto con los datos del usuario, los datos obtenidos de la API externa y, si corresponde, la notificación por correo.
+
+
+# Comentarios
+
+* La base de datos se inicializa con datos predeterminados automáticamente al arrancar el servidor.
+* El proyecto está estructurado siguiendo un enfoque modular.
+* La aplicación es compatible con despliegues locales utilizando las credenciales de la base de datos local.
+* Ruff para formatear el codigo.

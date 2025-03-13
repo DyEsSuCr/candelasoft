@@ -7,7 +7,7 @@ from .schemas import UserReadPagination
 
 from api.database import get_session
 from api.utils.send_email import simulate_email_notification
-from api.config import EXTERNAL_API_URL
+from api.config import settings
 
 
 class UserService:
@@ -47,7 +47,7 @@ class UserService:
         try:
             async with httpx.AsyncClient() as client:
                 response = await client.get(
-                    f'{EXTERNAL_API_URL}/todos?userId={user_id}'
+                    f'{settings.EXTERNAL_API_URL}/todo?userId={user_id}'
                 )
             response.raise_for_status()
             external_data = response.json()

@@ -5,7 +5,7 @@ from contextlib import asynccontextmanager
 
 
 from api.modules import router
-from api.config import APP_NAME, APP_DESCRIPTION
+from api.config import settings
 from api.database import create_db_and_tables, add_initial_data
 import anyio
 
@@ -18,8 +18,8 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title=APP_NAME,
-    description=APP_DESCRIPTION,
+    title=settings.APP_NAME,
+    description=settings.APP_DESCRIPTION,
     docs_url='/',
     redoc_url=None,
     lifespan=lifespan,

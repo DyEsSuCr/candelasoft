@@ -1,5 +1,5 @@
 from sqlmodel import SQLModel
-from typing import List, Optional
+from typing import List, Optional, Union
 from datetime import datetime
 
 from api.modules.countries.schemas import CountryRead
@@ -30,5 +30,5 @@ class UserReadPagination(SQLModel):
 
 class CombinedUserResponse(SQLModel):
     data: UserRead
-    external_data: Optional[List[dict]]
+    external_data: Optional[Union[List[dict], dict]] = None
     email_notification: Optional[dict] = None

@@ -1,13 +1,12 @@
 from datetime import datetime
 from sqlmodel import create_engine, Session, SQLModel, select
-from api.config import DB_HOST, DB_DATABASE, DB_PASSWORD, DB_PORT, DB_USERNAME, ENV
+from api.config import settings
 from api.modules.users.models import User
 from api.modules.countries.models import Country
 
-# Your existing engine configuration
 engine = create_engine(
-    f'postgresql+psycopg2://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}',
-    echo=ENV == 'dev',
+    f'postgresql+psycopg2://{settings.DB_USERNAME}:{settings.DB_PASSWORD}@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_DATABASE}',
+    echo=settings.ENV == 'dev',
 )
 
 
@@ -207,8 +206,7 @@ def add_initial_data():
                 ),
             ]
 
-            for country in countries_data:
-                session.add(country)
+            session.bulk_save_objects(countries_data)
             session.commit()
 
         user_count = session.exec(select(User)).first()
@@ -265,6 +263,5 @@ def add_initial_data():
                 ),
             ]
 
-            for user in users_data:
-                session.add(user)
+            session.bulk_save_objects(users_data)
             session.commit()

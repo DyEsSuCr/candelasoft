@@ -47,7 +47,7 @@ class UserService:
         try:
             async with httpx.AsyncClient() as client:
                 response = await client.get(
-                    f'{settings.EXTERNAL_API_URL}/todo?userId={user_id}'
+                    f'{settings.EXTERNAL_API_URL}/todos?userId={user_id}'
                 )
             response.raise_for_status()
             external_data = response.json()
